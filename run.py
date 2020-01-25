@@ -15,18 +15,19 @@ black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles",
 def hello_world():
     return render_template("home.html")
 
+
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-  if request.method == 'POST':
-    f = request.files['file']
-    file_name = secure_filename(f.filename)
-    dirName = 'tempDir'
-    if not os.path.exists(dirName):
-        os.mkdir(dirName)
-    f.save(os.path.join(dirName, file_name))
-    dishes = identify_dish(file_name)
-    print(dishes)
-    return "Dish name: {}\nConfidence: {}".format(dishes[0][0], dishes[0][1])
+    if request.method == 'POST':
+        f = request.files['file']
+        file_name = secure_filename(f.filename)
+        dir_name = 'tempDir'
+        if not os.path.exists(dir_name):
+            os.mkdir(dir_name)
+        f.save(os.path.join(dir_name, file_name))
+        dishes = identify_dish(file_name)
+        return "Dish name: {}\nConfidence: {}".format(dishes[0][0], dishes[0][1])
+
 
 def identify_dish(img_file_name):
     file_name = os.path.abspath("tempDir/" + img_file_name)
@@ -39,8 +40,8 @@ def identify_dish(img_file_name):
     for label in labels:
         if label.description not in black_list:
             results.append((label.description, label.score))
-    
+
     return results
 
 
-app.run(port=5000,debug=True)
+app.run(port=5000, debug=True)
