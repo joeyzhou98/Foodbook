@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ConUHacks</title>
+  <title>ConUHacks2020</title>
+  <style>
+      body{
+          background-image: url(https://i.ndtvimg.com/i/2017-11/cooking_650x400_61511605830.jpg) ;background-size:1300px ;
+      }
+      .boxed
+      {
+          background-color: white;
+          border: 5px red;
+
+      }
+      .file-field{
+          border: white;
+      }
+  </style>
 </head>
 <body>
-  <h1>This is our home page for ConUHacks2020 web application</h1>
+    <div class="boxed">
+        <h1 align="middle">This is our home page for ConUHacks2020 web application</h1>
+    </div>
+    <br>
+    <form class="md-form" action="home.html">
+  <div class="file-field">
+    <div class="btn btn-primary btn-sm float-left">
+      <span>Choose file</span>
+      <input type="file">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text" placeholder="Upload your file">
+    </div>
+  </div>
+</form>
 </body>
 </html>
