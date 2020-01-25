@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Setup Google Cloud Vision API and blacklisted labels
 client = vision.ImageAnnotatorClient()
-black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles", "Soup", "Fruit"]
+black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles", "Soup", "Fruit", "Dessert", "Snack cake", "Baked goods", "None"]
 
 
 @app.route('/')
@@ -22,9 +22,10 @@ def identify_dish(img_file_name):
     image = types.Image(content=content)
     response = client.label_detection(image=image)
     labels = response.label_annotations
+    results = []
     for label in labels:
         if label.description not in black_list:
-            return label
+            results.append(label.description, label.score)
 
 
 app.run(port=5000)
