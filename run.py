@@ -2,8 +2,9 @@ import io
 import os
 from google.cloud import vision
 from google.cloud.vision import types
-from flask import Flask, render_template, request
-from werkzeug import secure_filename
+from flask import Flask, render_template, request, jsonify
+from werkzeug.utils import secure_filename
+import requests
 app = Flask(__name__)
 
 # Setup Google Cloud Vision API and blacklisted labels
@@ -18,16 +19,37 @@ def hello_world():
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
-    if request.method == 'POST':
-        f = request.files['file']
-        file_name = secure_filename(f.filename)
-        dir_name = 'tempDir'
-        if not os.path.exists(dir_name):
-            os.mkdir(dir_name)
-        f.save(os.path.join(dir_name, file_name))
-        dishes = identify_dish(file_name)
-        return "Dish name: {}\nConfidence: {}".format(dishes[0][0], dishes[0][1])
-
+  if request.method == 'POST':
+    f = request.files['file']
+    file_name = secure_filename(f.filename)
+    dirName = 'tempDir'
+    if not os.path.exists(dirName):
+        os.mkdir(dirName)
+    f.save(os.path.join(dirName, file_name))
+    dishes = identify_dish(file_name)
+    recipies = getRecipe(dishes[0][0])
+    recipiesVideos = getRecipeVideos(dishes[0][0])
+    recipies_list = []
+    recipiesVideos_list = []
+    for recipeVideo in recipiesVideos["videos"]:
+      recipiesVideos_list.append([
+        recipeVideo["title"],
+        "https://www.youtube.com/watch?v="+recipeVideo["youTubeId"],
+        recipeVideo["thumbnail"],
+        recipeVideo["views"]
+      ])
+    for recipe in recipies["results"]:
+      recipies_list.append([
+        recipe["title"],
+        recipe["readyInMinutes"],
+        recipe["servings"],
+        recipe["image"],
+        recipe["imageUrls"],
+        getRecipeIngredients(recipe["id"])
+      ])
+    print(recipies_list)
+    return render_template("results.html", recipies=recipies_list, recipiesVideos=recipiesVideos_list)
+    # return recipe+"</br>Dish name: {}\nConfidence: {}".format(dishes[0][0], dishes[0][1])
 
 def identify_dish(img_file_name):
     file_name = os.path.abspath("tempDir/" + img_file_name)
@@ -40,8 +62,39 @@ def identify_dish(img_file_name):
     for label in labels:
         if label.description not in black_list:
             results.append((label.description, label.score))
-
     return results
+
+def getRecipe(image_dish_name):
+  url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search"
+  querystring = {"query":image_dish_name}
+  headers = {
+      'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      'x-rapidapi-key': "2246a2d1e7msh226333d4b7b13aap12376cjsnc5cb7fc432e8"
+      }
+  response = requests.request("GET", url, headers=headers, params=querystring)
+  return response.json()
+
+def getRecipeVideos(image_dish_name):
+  url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/videos/search"
+  querystring = {"query":image_dish_name}
+  headers = {
+      'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      'x-rapidapi-key': "2246a2d1e7msh226333d4b7b13aap12376cjsnc5cb7fc432e8"
+      }
+  response = requests.request("GET", url, headers=headers, params=querystring)
+  # print(response)
+  return response.json()
+
+def getRecipeIngredients(recipeId):
+  url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+str(recipeId)+"/ingredientWidget"
+  querystring = {"defaultCss":"false"}
+  headers = {
+      'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      'x-rapidapi-key': "2246a2d1e7msh226333d4b7b13aap12376cjsnc5cb7fc432e8",
+      'accept': "text/html"
+      }
+  response = requests.request("GET", url, headers=headers, params=querystring)
+  return response.text
 
 
 app.run(port=5000, debug=True)
