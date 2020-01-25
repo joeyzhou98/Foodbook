@@ -1,0 +1,22 @@
+<html>
+<style>
+  #spoonacular-ingredient-vis-list { display:none; }
+
+</style>
+<body>
+  {% for recipeVideo in recipiesVideos %}
+    <h1>{{recipeVideo[0]}}</h1>
+    <p>{{recipeVideo[3]}} views</p>
+    <a href={{recipeVideo[1]}}>
+      <img src={{recipeVideo[2]}}></img>
+    </a>
+  {% endfor %}
+  {% for recipe in recipies %}
+    <h1>{{ recipe[0] }}</h1>
+    <h1>Ready in {{ recipe[1] }} minutes</h1>
+    <h1>Serves {{ recipe[2] }} people</h1>
+    {{ recipe[5]|safe }}
+  {% endfor %}
+</body>
+
+</html>
