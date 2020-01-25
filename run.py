@@ -16,7 +16,8 @@ black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles",
 def hello_world():
     return render_template("home.html")
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+
+@app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
   if request.method == 'POST':
     f = request.files['file']
@@ -96,4 +97,4 @@ def getRecipeIngredients(recipeId):
   return response.text
 
 
-app.run(port=5000,debug=True)
+app.run(port=5000, debug=True)
