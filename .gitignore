@@ -1,2 +1,6 @@
-/venv
+venv/
 .idea/
+credentials.json
+.vscode/
+build/
+dist/
