@@ -11,7 +11,7 @@
 
     #inputFile {
       display: none
-    } 
+    }
 
     body {
       background: url(https://www.reynoldskitchens.com/sites/default/files/styles/background_plain/public/heroes/collection/rey_resolutiontable_landingpage.jpg?itok=tgKJqeBT) ;
@@ -121,11 +121,15 @@
   </style>
 
   <script>
-  
+
   $('span').click(function() {
         labelID = $(this).attr('id');
         $('#inputSpan').trigger('click');
   });
+
+  function activateSpinner() {
+      document.getElementById("submitBtn").innerHTML = "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading..."
+  }
   </script>
 </head>
 
@@ -153,8 +157,9 @@
           </label>
           
         </div> 
-        <input type="submit" class="btn" name="uploadbutton"></input>
-
+        <button id="submitBtn" type="submit" class="btn btn-primary" onclick="activateSpinner()">
+          Submit
+        </button>
       </div>
     </div>
   </form>

@@ -19,7 +19,7 @@ spec:
         spec:
             containers:
                 - name: conuhacks-api
-                  image: joeyzhou98/foodbook:1.0
+                  image: joeyzhou98/foodbook:1.0.1
                   imagePullPolicy: Always
                   resources:
                         requests:

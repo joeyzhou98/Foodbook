@@ -4,3 +4,4 @@ credentials.json
 .vscode/
 build/
 dist/
+tempDir/
