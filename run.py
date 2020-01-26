@@ -99,5 +99,7 @@ def getRecipeIngredients(recipeId):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
-
+    if "PORT" in os.environ:
+        app.run(host='0.0.0.0', port=os.environ["PORT"])
+    else:
+        app.run(host='0.0.0.0')
