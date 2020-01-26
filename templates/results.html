@@ -3,6 +3,13 @@
   #spoonacular-ingredient-vis-list {
     display: none;
   }
+
+  #dish {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
 </style>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -19,8 +26,26 @@
       <div class="navbar-header">
         <a class="navbar-brand" text="center" href="../">Foodbook</a>
       </div>
-      
+    </div>
   </nav>
+
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class=".col-md-6 .col-md-offset-3">
+          <img id="dish" src="tempDir/{{dish[2]}}" alt="{{dish[0]}}">
+        </div>
+      </div>
+      <h1>{{dish[0]}}</h1>
+      Confidence:
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{dish[1]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{dish[1]}}%;">
+          {{dish[1]}}%
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       {% for recipeVideo in recipiesVideos %}
