@@ -1,22 +1,57 @@
 <html>
 <style>
-  #spoonacular-ingredient-vis-list { display:none; }
-
+  #spoonacular-ingredient-vis-list {
+    display: none;
+  }
 </style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <body>
-  {% for recipeVideo in recipiesVideos %}
-    <h1>{{recipeVideo[0]}}</h1>
-    <p>{{recipeVideo[3]}} views</p>
-    <a href={{recipeVideo[1]}}>
-      <img src={{recipeVideo[2]}}></img>
-    </a>
-  {% endfor %}
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" text="center" href="../">Foodbook</a>
+      </div>
+      
+  </nav>
+  <div class="container">
+    <div class="row">
+      {% for recipeVideo in recipiesVideos %}
+
+      <div class="panel panel-primary" class="col-sm">
+        <div class="panel-heading">{{recipeVideo[0]}}</div>
+        <div class="panel-body">
+          <p>{{recipeVideo[3]}} views</p>
+          <a href={{recipeVideo[1]}}>
+            <img src={{recipeVideo[2]}}></img>
+          </a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
   {% for recipe in recipies %}
-    <h1>{{ recipe[0] }}</h1>
-    <h1>Ready in {{ recipe[1] }} minutes</h1>
-    <h1>Serves {{ recipe[2] }} people</h1>
-    {{ recipe[5]|safe }}
+  <div class="panel panel-primary" class="col-sm">
+    <div class="panel-heading">{{recipe[0]}}</div>
+    <div class="panel-body">
+  <h1>Ready in {{ recipe[1] }} minutes</h1>
+  <h1>Serves {{ recipe[2] }} people</h1>
+  {{ recipe[5]|safe }}
+  </div>
+  </div>
   {% endfor %}
+  </div>
+  </div>
 </body>
 
 </html>
