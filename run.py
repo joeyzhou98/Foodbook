@@ -47,7 +47,6 @@ def upload_file():
         recipe["imageUrls"],
         getRecipeIngredients(recipe["id"])
       ])
-    print(recipies_list)
     return render_template("results.html", recipies=recipies_list, recipiesVideos=recipiesVideos_list)
     # return recipe+"</br>Dish name: {}\nConfidence: {}".format(dishes[0][0], dishes[0][1])
 
@@ -82,7 +81,6 @@ def getRecipeVideos(image_dish_name):
       'x-rapidapi-key': "2246a2d1e7msh226333d4b7b13aap12376cjsnc5cb7fc432e8"
       }
   response = requests.request("GET", url, headers=headers, params=querystring)
-  # print(response)
   return response.json()
 
 def getRecipeIngredients(recipeId):
