@@ -34,7 +34,7 @@ def upload_file():
     for recipeVideo in recipiesVideos["videos"]:
       recipiesVideos_list.append([
         recipeVideo["title"],
-        "https://www.youtube.com/watch?v="+recipeVideo["youTubeId"],
+        "https://www.youtube.com/embed/"+recipeVideo["youTubeId"],
         recipeVideo["thumbnail"],
         recipeVideo["views"]
       ])
