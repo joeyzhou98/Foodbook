@@ -5,3 +5,4 @@ credentials.json
 build/
 dist/
 tempDir/
+kubeconfig
