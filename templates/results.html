@@ -10,6 +10,14 @@
     margin-right: auto;
     width: 50%;
   }
+
+  .panel-heading {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
 </style>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -20,68 +28,271 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<body>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" text="center" href="../">Foodbook</a>
-      </div>
-    </div>
-  </nav>
 
-  <div class="container">
-    <div class="jumbotron">
-      <div class="row">
+<!DOCTYPE html>
+<di lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ConUHacks2020</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      .navbar-inner {
+        background: transparent;
+      }
+
+      #inputFile {
+        display: none
+      }
+
+      .spoonacular-ingredients-menu {
+        display: none
+      }
+
+      body,
+      html {
+        height: 100%;
+      }
+
+      body {
+        background: url(https://www.reynoldskitchens.com/sites/default/files/styles/background_plain/public/heroes/collection/rey_resolutiontable_landingpage.jpg?itok=tgKJqeBT);
+        background-position: center;
+        /* Center the image */
+        /* background-repeat: no-repeat; Do not repeat the image */
+        background-size: 1600px 1350px
+          /* Resize the background image to cover the entire container */
+      }
+
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+      input#file {
+        display: inline-block;
+        width: 100%;
+        padding: 120px 0 0 0;
+        height: 100px;
+        overflow: hidden;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #e4e4e4;
+        border-radius: 20px;
+        background-size: 60px 60px;
+      }
+
+      .frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        margin-top: -200px;
+        margin-left: -200px;
+        border-radius: 2px;
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        color: #333;
+        font-family: "Open Sans", Helvetica, sans-serif;
+      }
+
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 260px;
+        border-radius: 3px;
+        box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+      }
+
+      .title {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #999;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 16px;
+        font-weight: 300;
+        color: #666;
+      }
+
+      .dropzone {
+        width: 100px;
+        height: 80px;
+        border: 1px dashed #999;
+        border-radius: 3px;
+        text-align: center;
+      }
+
+      .upload-icon {
+        margin: 25px 2px 2px 2px;
+      }
+
+      .upload-input {
+        position: relative;
+        top: -62px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      .btn {
+        display: block;
+        width: 140px;
+        height: 40px;
+        background: black;
+        color: #fff;
+        border-radius: 3px;
+        border: 0;
+        box-shadow: 0 3px 0 0 red;
+        transition: all 0.3s ease-in-out;
+        font-size: 14px;
+      }
+
+      .btn:hover {
+        background: rebeccapurple;
+        box-shadow: 0 3px 0 0 deeppink;
+      }
+    </style>
+
+    <script>
+
+      $('span').click(function () {
+        labelID = $(this).attr('id');
+        $('#inputSpan').trigger('click');
+      });
+
+      function activateSpinner() {
+        document.getElementById("submitBtn").innerHTML = "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>Loading..."
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-inner" style="border: none; min-height: 10px; ">
+        <div class="container-fluid">
+          <div class="navbar-header">
+          </div>
+        </div>
+      </nav>
+      <div class="jumbotron" style="padding: 20px; background-color: #fff">
+        <!-- <h1 style="font-size: 50px;" align="center">Foodbook</h1>  -->
+        <img
+          src="https://scontent.fyhu1-1.fna.fbcdn.net/v/t1.15752-9/83350045_796149240885948_8396802170535542784_n.jpg?_nc_cat=110&_nc_eui2=AeFqGO1XAEAk4YF4LjcVre2w15YrOOz4_JCm2Kn28mKxx_Ij1F1a5X8QaZO2cC98H80Ym6tikqjMVv4hdYB7uvmoIzIXo91bKfR04vMBUNDogw&_nc_ohc=5eKJeJ-kztIAX8oCvqm&_nc_ht=scontent.fyhu1-1.fna&oh=e15a9da34194d6697e544c8a2d26216e&oe=5EC5843A"
+          alt="foodbook logo" height="120px" style="display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40%;">
+      </div>
+      <!-- </div> -->
+      <!-- <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" text="center" href="../">Foodbook</a>
+        </div>
+      </div>
+    </nav> -->
+
+      <!-- <div class="container"> -->
+      <div class="jumbotron">
+        <h1 class="display-4" style="text-align: center;">{{dish[0]}}</h1>
+        <p style="text-align: center;">Confidence</p>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="{{dish[1]}}" aria-valuemin="0" aria-valuemax="100"
+            style="width: {{dish[1]}}%;">
+            {{dish[1]}}%
+          </div>
+        </div>
         <div class=".col-md-6 .col-md-offset-3">
-          <img id="dish" src="tempDir/{{dish[2]}}" alt="{{dish[0]}}">
+          <img id="dish" src="tempDir/{{dish[2]}}" alt="{{dish[0]}}" style="text-align: center;">
         </div>
       </div>
-      <h1>{{dish[0]}}</h1>
-      Confidence:
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{dish[1]}}" aria-valuemin="0" aria-valuemax="100"
-          style="width: {{dish[1]}}%;">
-          {{dish[1]}}%
-        </div>
-      </div>
-    </div>
-  </div>
+      <!-- </di> -->
 
-  <div class="container">
-    <div class="row">
+      <!-- <div class="container"> -->
+      <!-- <div class="row"> -->
       {% for recipeVideo in recipiesVideos %}
 
-      <div class="panel panel-primary" class="col-sm">
-        <div class="panel-heading">{{recipeVideo[0]}}</div>
+      <div class="panel panel-danger" class="col-sm">
+        <div class="panel-heading">
+
+          <a class="pull-left" href="#">
+            <img src="https://seeklogo.com/images/Y/youtube-2017-icon-logo-D1FE045118-seeklogo.com.png"
+              style="height: 2.5%;" alt="">
+          </a><span style="margin-left: 2%;">{{recipeVideo[0]}}</span>
+
+          <!-- <img src="https://img.favpng.com/9/16/19/logo-trademark-brand-symbol-png-favpng-3hdUU678Kx0GfwQRPpNQ64AJ9.jpg" width="15px" height="15px" alt="Youtube Logo"> -->
+        </div>
         <div class="panel-body">
           <p>{{recipeVideo[3]}} views</p>
 
-          <iframe width="560" height="315" src={{recipeVideo[1]}} frameborder="0" allowfullscreen>
+          <iframe width="100%" height="315" src={{recipeVideo[1]}} frameborder="0" allowfullscreen>
           </iframe>
 
           <!-- <a href={{recipeVideo[1]}}>
-            <img src={{recipeVideo[2]}}></img>
-          </a> -->
+              <img src={{recipeVideo[2]}}></img>
+            </a> -->
         </div>
       </div>
 
       {% endfor %}
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- <div class="container"> -->
+      <!-- <div class="row"> -->
       {% for recipe in recipies %}
-      <div class="panel panel-primary" class="col-sm">
-        <div class="panel-heading">{{recipe[0]}}</div>
+      <div class="panel panel-success" class="col-sm">
+
+        <div class="panel-heading">
+          <!-- <a class="pull-left" href="#"> 
+              <img src="https://toppng.com/uploads/preview/svg-transparent-library-clipart-silverware-knife-and-fork-pdf-115632300673sxvyvzwxo.png"  style="height: 5%;" alt=""> 
+              </a><span style="margin-left: 2%;">{{recipe[0]}}</span>  -->
+          {{recipe[0]}}</div>
         <div class="panel-body">
-          <h1>Ready in {{ recipe[1] }} minutes</h1>
-          <h1>Serves {{ recipe[2] }} people</h1>
+          <div style="display:inline-block;vertical-align:top;">
+            <img src={{recipe[7]}} alt="recipe">
+          </div>
+          <div style="display:inline-block;">
+            <h1>Ready in {{ recipe[1] }} minutes</h1>
+            <h1>{{ recipe[2] }} serving(s)</h1>
+          </div>
+          <p style="text-align: center; font-weight: bold;">Ingredients</p>
           {{ recipe[5]|safe }}
+          <p>
+            {{ recipe[6] }}
+          </p>
         </div>
       </div>
       {% endfor %}
+      <!-- </div> -->
     </div>
-  </div>
-</body>
+  </body>
+  <script>
+    function getFileName() {
+      var file = document.getElementById("inputFile").files;
+      document.getElementById("fileName").innerHTML = file[0].name;
+    }
+  </script>
 
 </html>

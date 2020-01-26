@@ -45,7 +45,9 @@ def upload_file():
         recipe["servings"],
         recipe["image"],
         recipe["imageUrls"],
-        getRecipeIngredients(recipe["id"])
+        getRecipeIngredients(recipe["id"]),
+        getRecipeInstructions(recipe["id"])["instructions"],
+        "https://spoonacular.com/recipeImages/"+str(recipe["id"])+"-312x231.jpg"
       ])
     return render_template("results.html", dish=[dishes[0][0], int(dishes[0][1] * 100), img_file_name], recipies=recipies_list, recipiesVideos=recipiesVideos_list)
 
@@ -97,6 +99,14 @@ def getRecipeIngredients(recipeId):
   response = requests.request("GET", url, headers=headers, params=querystring)
   return response.text
 
+def getRecipeInstructions(recipeId):
+  url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+str(recipeId)+"/information"
+  headers = {
+      'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      'x-rapidapi-key': "2246a2d1e7msh226333d4b7b13aap12376cjsnc5cb7fc432e8"
+      }
+  response = requests.request("GET", url, headers=headers)
+  return response.json()
 
 if __name__ == '__main__':
     if "PORT" in os.environ:
