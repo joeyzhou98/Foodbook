@@ -1,4 +1,6 @@
-# ConuHacks2020
+# Foodbook
+Smart food recognition web app that identifies dishes and retrieves different recipes and ingredients.
+@ConUHacksV
 
 ## How to start server
 
