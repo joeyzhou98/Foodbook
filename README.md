@@ -1,6 +1,9 @@
 # Foodbook
-Smart food recognition web app that identifies dishes and retrieves different recipes and ingredients.
-@ConUHacksV
+Smart food recognition web app that identifies dishes and retrieves different recipes and ingredients <br />
+@ConUHacksV <br />
+Try it out :) <br />
+https://foodbook0.herokuapp.com/ <br />
+https://conuhacks-api-team-3.montreal.cluster.extend.cx.cloud.sap/
 
 ## How to start server
 
