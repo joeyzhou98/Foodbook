@@ -11,7 +11,7 @@ app = Flask(__name__, static_folder="tempDir")
 client = vision.ImageAnnotatorClient()
 black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles", "Soup", "Fruit", "Dessert",
               "Snack cake", "Baked goods", "None", "Produce", "Staple food", "Recipe", "Comfort food", "Green",
-              "Fried food", "Breakfast", "Junk food", "Cauliflower"]
+              "Fried food", "Breakfast", "Junk food", "Cauliflower", "Meat"]
 
 
 @app.route('/')
