@@ -165,7 +165,7 @@
     <div class="frame">
       <div class="center">
         <div class="title">
-          <h1>Upload file!</h1>
+          <h1 id="fileName">Upload file!</h1>
         </div>
 
         <!-- <div class="dropzone" class="file-upload-wrapper">
@@ -175,7 +175,7 @@
         <div class="btn btn-primary btn-sm float-center">
           <label>
             <span id="inputSpan">Choose file</span>
-            <input id="inputFile" type="file" name="file">
+            <input id="inputFile" type="file" name="file" onchange="getFileName()">
           </label>
 
         </div>
@@ -188,5 +188,10 @@
 
 
 </body>
-
+<script>
+  function getFileName() {
+      var file = document.getElementById("inputFile").files;
+      document.getElementById("fileName").innerHTML = file[0].name;
+  }
+</script>
 </html>
