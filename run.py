@@ -9,7 +9,9 @@ app = Flask(__name__, static_folder="tempDir")
 
 # Setup Google Cloud Vision API and blacklisted labels
 client = vision.ImageAnnotatorClient()
-black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles", "Soup", "Fruit", "Dessert", "Snack cake", "Baked goods", "None", "Produce", "Staple food", "Recipe"]
+black_list = ["Cuisine", "Ingredient", "Dish", "Food", "Noodle", "Rice noodles", "Soup", "Fruit", "Dessert",
+              "Snack cake", "Baked goods", "None", "Produce", "Staple food", "Recipe", "Comfort food", "Green",
+              "Fried food", "Breakfast", "Junk food", "Cauliflower"]
 
 
 @app.route('/')
