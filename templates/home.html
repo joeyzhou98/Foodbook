@@ -27,8 +27,10 @@
     }
 
     body {
-      background-image: url("https://www.ucsf.edu/sites/default/files/styles/article_feature_banner__image/public/2019-09/vegetables-cooking-food-banner-size.jpg");
-      /* background-size: 1300px; */
+      background: url(https://www.reynoldskitchens.com/sites/default/files/styles/background_plain/public/heroes/collection/rey_resolutiontable_landingpage.jpg?itok=tgKJqeBT) ;
+          background-position: center; /* Center the image */
+          background-repeat: no-repeat; /* Do not repeat the image */
+          background-size: 1600px 1350px /* Resize the background image to cover the entire container */
     }
 
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
@@ -130,22 +132,7 @@
       box-shadow: 0 3px 0 0 deeppink;
     }
   </style>
-  <style>
-    body {
-      background-image: url(https://i.ndtvimg.com/i/2017-11/cooking_650x400_61511605830.jpg);
-      background-size: 1300px;
-    }
 
-    .boxed {
-      background-color: white;
-      border: 5px red;
-
-    }
-
-    .file-field {
-      border: white;
-    }
-  </style>
   <script>
 
     $('span').click(function () {
@@ -159,10 +146,10 @@
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h1 align="center">Dish's recipe</h1>
+      <h1 align="center">Foodbook</h1>
     </div>
   </div>
-  <form class="md-form" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
+  <form class="md-form" action="/uploader" method="POST" enctype="multipart/form-data">
     <div class="frame">
       <div class="center">
         <div class="title">
@@ -186,22 +173,6 @@
     </div>
   </form>
 
-
-  <!-- <div class="boxed">
-    <h1 align="middle">This is our home page for ConUHacks2020 web application</h1>
-  </div>
-  <br>
-  <form class="md-form" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
-    <div class="file-field">
-      <div class="btn btn-primary btn-sm float-left">
-        <span>Choose file</span>
-        <input type="file" name="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="submit" placeholder="Upload your file">
-      </div>
-    </div>
-  </form> -->
 
 </body>
 
