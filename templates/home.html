@@ -4,99 +4,120 @@
 <head>
   <meta charset="UTF-8">
   <title>ConUHacks2020</title>
-   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-      body{
-          background-image: url(https://i.ndtvimg.com/i/2017-11/cooking_650x400_61511605830.jpg) ;background-size:1300px ;
-      }
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+
+    #inputFile {
+      display: none
+    } 
+
+    body {
+      background-image: url(https://i.ndtvimg.com/i/2017-11/cooking_650x400_61511605830.jpg);
+      background-size: 1300px;
+    }
+
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
 
+    input#file {
+      display: inline-block;
+      width: 100%;
+      padding: 120px 0 0 0;
+      height: 100px;
+      overflow: hidden;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #e4e4e4;
+      border-radius: 20px;
+      background-size: 60px 60px;
+    }
 
-.frame {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 400px;
-	height: 400px;
-	margin-top: -200px;
-	margin-left: -200px;
-	border-radius: 2px;
-	box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	color: #333;
-	font-family: "Open Sans", Helvetica, sans-serif;
-}
+    .frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      margin-top: -200px;
+      margin-left: -200px;
+      border-radius: 2px;
+      box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      color: #333;
+      font-family: "Open Sans", Helvetica, sans-serif;
+    }
 
-.center {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 300px;
-	height: 260px;
-	border-radius: 3px;
-	box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	flex-direction: column;
-}
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 260px;
+      border-radius: 3px;
+      box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+    }
 
-.title {
-	width: 100%;
-	height: 50px;
-	border-bottom: 1px solid #999;
-	text-align: center;
-}
+    .title {
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid #999;
+      text-align: center;
+    }
 
-h1 {
-	font-size: 16px;
-	font-weight: 300;
-	color: #666;
-}
+    h1 {
+      font-size: 16px;
+      font-weight: 300;
+      color: #666;
+    }
 
-.dropzone {
-	width: 100px;
-	height: 80px;
-	border: 1px dashed #999;
-	border-radius: 3px;
-	text-align: center;
-}
+    .dropzone {
+      width: 100px;
+      height: 80px;
+      border: 1px dashed #999;
+      border-radius: 3px;
+      text-align: center;
+    }
 
-.upload-icon {
-	margin: 25px 2px 2px 2px;
-}
+    .upload-icon {
+      margin: 25px 2px 2px 2px;
+    }
 
-.upload-input {
-	position: relative;
-	top: -62px;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-}
+    .upload-input {
+      position: relative;
+      top: -62px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
 
-.btn {
-	display: block;
-	width: 140px;
-	height: 40px;
-	background: black;
-	color: #fff;
-	border-radius: 3px;
-	border: 0;
-	box-shadow: 0 3px 0 0 red;
-	transition: all 0.3s ease-in-out;
-	font-size: 14px;
-}
+    .btn {
+      display: block;
+      width: 140px;
+      height: 40px;
+      background: black;
+      color: #fff;
+      border-radius: 3px;
+      border: 0;
+      box-shadow: 0 3px 0 0 red;
+      transition: all 0.3s ease-in-out;
+      font-size: 14px;
+    }
 
-.btn:hover {
-	background: rebeccapurple;
-	box-shadow: 0 3px 0 0 deeppink;
-}
+    .btn:hover {
+      background: rebeccapurple;
+      box-shadow: 0 3px 0 0 deeppink;
+    }
   </style>
-<style>
+  <style>
     body {
       background-image: url(https://i.ndtvimg.com/i/2017-11/cooking_650x400_61511605830.jpg);
       background-size: 1300px;
@@ -112,34 +133,47 @@ h1 {
       border: white;
     }
   </style>
-  </head>
+  <script>
+  
+  $('span').click(function() {
+        labelID = $(this).attr('id');
+        $('#inputSpan').trigger('click');
+  });
+  </script>
+</head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron">
-            <h1 align="center">Dish's recipe</h1>
-        </div>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 align="center">Dish's recipe</h1>
     </div>
-    <form action="https://www.instagram.com/minh_bee/">
+  </div>
+  <form class="md-form" action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
     <div class="frame">
-	<div class="center">
-		<div class="title">
-			<h1>Drop file to upload</h1>
-		</div>
+      <div class="center">
+        <div class="title">
+          <h1>Upload file!</h1>
+        </div>
+        
+        <!-- <div class="dropzone" class="file-upload-wrapper">
+          <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+          <input type="file" class="upload-input" name="file">
+        </div> -->
+        <div class="btn btn-primary btn-sm float-center">
+          <label>
+            <span id="inputSpan">Choose file</span>
+          <input id="inputFile" type="file" name="file">
+          </label>
+          
+        </div> 
+        <input type="submit" class="btn" name="uploadbutton"></input>
 
-		<div class="dropzone">
-			<img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-			<input type="file" class="upload-input" name="myFile">
-		</div>
-
-		<input type="submit" class="btn" name="uploadbutton">Upload file</input>
-
-	</div>
+      </div>
     </div>
-    </form>
+  </form>
 
 
-  <div class="boxed">
+  <!-- <div class="boxed">
     <h1 align="middle">This is our home page for ConUHacks2020 web application</h1>
   </div>
   <br>
@@ -153,7 +187,7 @@ h1 {
         <input class="file-path validate" type="submit" placeholder="Upload your file">
       </div>
     </div>
-  </form>
+  </form> -->
 
 </body>
 
