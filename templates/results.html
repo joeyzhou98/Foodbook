@@ -39,7 +39,8 @@
       <h1>{{dish[0]}}</h1>
       Confidence:
       <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="{{dish[1]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{dish[1]}}%;">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{dish[1]}}" aria-valuemin="0" aria-valuemax="100"
+          style="width: {{dish[1]}}%;">
           {{dish[1]}}%
         </div>
       </div>
@@ -54,9 +55,13 @@
         <div class="panel-heading">{{recipeVideo[0]}}</div>
         <div class="panel-body">
           <p>{{recipeVideo[3]}} views</p>
-          <a href={{recipeVideo[1]}}>
+
+          <iframe width="560" height="315" src={{recipeVideo[1]}}" frameborder="0" allowfullscreen>
+          </iframe>
+
+          <!-- <a href={{recipeVideo[1]}}>
             <img src={{recipeVideo[2]}}></img>
-          </a>
+          </a> -->
         </div>
       </div>
 
@@ -65,17 +70,17 @@
   </div>
   <div class="container">
     <div class="row">
-  {% for recipe in recipies %}
-  <div class="panel panel-primary" class="col-sm">
-    <div class="panel-heading">{{recipe[0]}}</div>
-    <div class="panel-body">
-  <h1>Ready in {{ recipe[1] }} minutes</h1>
-  <h1>Serves {{ recipe[2] }} people</h1>
-  {{ recipe[5]|safe }}
-  </div>
-  </div>
-  {% endfor %}
-  </div>
+      {% for recipe in recipies %}
+      <div class="panel panel-primary" class="col-sm">
+        <div class="panel-heading">{{recipe[0]}}</div>
+        <div class="panel-body">
+          <h1>Ready in {{ recipe[1] }} minutes</h1>
+          <h1>Serves {{ recipe[2] }} people</h1>
+          {{ recipe[5]|safe }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </body>
 
