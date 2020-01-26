@@ -1,0 +1,44 @@
+<!--
+
+    Copy the playlist ID from the URL.
+Modify the embed code for an individual video by doing the following:
+In the place of the video ID (after "embed/"), substitute "videoseries?list=".
+Then paste the playlist ID after the "=".
+Paste the code into your blog or website HTML.
+Example:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <title>Youtube Test</title>
+    <style>
+        .video{
+        position:relative;
+        width:100%;
+        padding-top:56.25%;
+        }
+        .video iframe{
+        position:absolute;
+        top:0;
+        right:0;
+        width:100%;
+        height:100%;
+        }
+    </style>
+
+</head>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/58Hj4BsMIQs"
+frameborder="0" allowfullscreen>
+</iframe>
+
+<div class="video">
+  <iframe
+  src="https://www.youtube.com/embed/58Hj4BsMIQs"
+  frameborder="0" allowfullscreen>
+  </iframe>
+</div>
