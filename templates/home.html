@@ -1,16 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- HTML FOR TAKING FOOD CAMERA -->
   <meta charset="UTF-8">
-  <title>ConUHacks</title>
+    <title>Camera Test</title>
+    <style>
+        canvas, video{
+        border: 1px solid gray;
+      }
+    </style>
+
 </head>
+
+
 <body>
   <h1>Cookku Bookku</h1>
+
+  <!--UPLOAD A FILE-->
   <h3>Upload File</h3>
     <form method = post enctype = multipart/form-data>
     <p><input type=file name = file>
     <input type = submit value = Upload>
     </form>
+
+  <!-- OR DIRECTLY TAKE A PIC FROM YOUR DEVICE-->
+    <br>
+    <br>
+    <h3>or Take a Picture</h3>
+
+<video id="camera" width="300" height="200"></video>
+<canvas id="picture" width="300" height="200"></canvas>
+<form>
+  <button type="button" id="shutter">Shutter</button>
+</form>
+
+<audio id="se" preload="auto">
+  <source src="camera-shutter1.mp3" type="audio/mp3">
+</audio>
+
+  <!--
+  <a id="picture" href="#" onclick="downloadImg();">Submit</a>
+  -->
+
+
+
+<script>
+window.onload = () => {
+  const video  = document.querySelector("#camera");
+  const canvas = document.querySelector("#picture");
+  const se     = document.querySelector('#se');
+
+  <!--Setting Camera-->
+  const constraints = {
+    audio: false,
+    video: {
+      width: 300,
+      height: 200,
+      //facingMode: "user" // Use front camera
+      facingMode: { exact: "environment" }  // リアカメラを利用する場合
+    }
+  };
+  /**
+   * カメラを<video>と同期
+   */
+  navigator.mediaDevices.getUserMedia(constraints)
+  .then( (stream) => {
+    video.srcObject = stream;
+    video.onloadedmetadata = (e) => {
+      video.play();
+    };
+  })
+  .catch( (err) => {
+    console.log(err.name + ": " + err.message);
+  });
+
+  // SHUTTER BUTTON
+   document.querySelector("#shutter").addEventListener("click", () => {
+    const ctx = canvas.getContext("2d");
+
+    video.pause();  // pause video
+    se.play();      // shutter sound
+    setTimeout( () => {
+      video.play();    // restart camera again after 0.5 sec
+    }, 500);
+
+    // put picture on canvas
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    video.src = canvas.toDataURL('image/png');
+    //video.download = 'download.jpg';
+  });
+};
+
+/**
+function downloadImg () {
+    var fileName = 'file.jpg';
+    var uri = '/path/img/file.jpg';
+    var link = document.getElementById('picture');
+    link.download = fileName;
+};
+    **/
+
+
+</script>
+
+
+
 
 </body>
 </html>
